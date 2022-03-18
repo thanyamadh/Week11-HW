@@ -17,6 +17,8 @@ class TIME
 void TIME::set_time(int hour,int min,int sec)
 {
   //Concept : if(hour>24) h=0; else h=hour;
+  //m = min>60?0:min;
+  //s = sec>60?0:sec;
   if(sec>=60) 
   {
     s=sec-60;
@@ -35,9 +37,12 @@ void TIME::set_time(int hour,int min,int sec)
     m=0;
   else
     m=min;
-  h = hour>24?0:hour;
-  h = hour<0?0:hour;
-  //s = sec>60?0:sec;
+  if(hour>24) 
+    h=hour-24; 
+  else if(hour<0)
+    h=0;
+  else
+    h=hour;
 }
 
 void TIME::getTime()

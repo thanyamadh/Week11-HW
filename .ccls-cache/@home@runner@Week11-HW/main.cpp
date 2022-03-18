@@ -12,12 +12,13 @@ int main()
   
   cout<<"What time was it?"<<endl;
   t1.getTime(); // รับค่าเวลาเข้ามา
+  cout<<"Time1 is ";
   t1.display();
   cout<<"What time is it now?"<<endl;
   t2.getTime(); // รับค่าเวลาเข้ามา
+  cout<<"Time2 is ";
   t2.display();
   t3.subtract(t2,t1); //t3=t2-t1
-  // t3.display();
-  // cout<<"Time diff is ";
-  
+  cout<<"Time diff is ";
+  t3.display();
 }

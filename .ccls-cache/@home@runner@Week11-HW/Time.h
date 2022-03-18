@@ -10,14 +10,15 @@ class TIME
   public:
     void set_time(int=0,int=0,int=0); //ไม่บังคับใส่ทุกตัว ตัวที่ไม่ใส่เป็น0
     void display();
-    class TIME getTime();
-    class TIME subtract(class TIME y ,class TIME x);
+    void getTime();
+    void subtract(class TIME y ,class TIME x);
 };
-
 
 void TIME::set_time(int hour,int min,int sec)
 {
   //Concept : if(hour>24) h=0; else h=hour;
+  //m = min>60?0:min;
+  //s = sec>60?0:sec;
   if(sec>=60) 
   {
     s=sec-60;
@@ -36,14 +37,17 @@ void TIME::set_time(int hour,int min,int sec)
     m=0;
   else
     m=min;
-  h = hour>24?0:hour;
-  //s = sec>60?0:sec;
+  if(hour>24) 
+    h=hour-24; 
+  else if(hour<0)
+    h=0;
+  else
+    h=hour;
 }
 
-class TIME TIME::getTime()
+void TIME::getTime()
 {
   int hour,min,sec;
-  TIME t;
   cout<<"Hour: ";
   cin >> hour;
   cout<<"Minute : ";
@@ -51,20 +55,15 @@ class TIME TIME::getTime()
   cout<<"Second : ";
   cin >> sec;
   set_time(hour,min,sec);
-  t.h=h;
-  t.m=m;
-  t.s=s;
-  return t;
 }
 
-class TIME TIME::subtract(class TIME y ,class TIME x)
+void TIME::subtract(class TIME y ,class TIME x)
 {
   int check;
   TIME ans;
   ans.h = y.h-x.h;
   ans.m = y.m-x.m;
   ans.s = y.s-x.s;
-  ans.display();
   if(ans.m<0) //เช็คติดลบ
   {
     ans.h--;
@@ -88,9 +87,7 @@ class TIME TIME::subtract(class TIME y ,class TIME x)
     }
     ans.s = check;
   }
-  cout<< ans;
-  // ans.display();
-  return ans;
+  set_time(ans.h,ans.m,ans.s);
 }
 
 void TIME::display()
