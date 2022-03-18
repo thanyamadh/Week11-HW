@@ -14,7 +14,6 @@ class TIME
     void subtract(class TIME y ,class TIME x);
 };
 
-
 void TIME::set_time(int hour,int min,int sec)
 {
   //Concept : if(hour>24) h=0; else h=hour;
